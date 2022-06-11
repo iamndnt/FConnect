@@ -3,6 +3,8 @@ package group.com.fconnect;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
     MyArrayAdapterForShowAllStadium myArrayAdapterForShowAllStadium;
     ArrayList<ItemStadium> itemStadiums;
     ArrayList<San> arrayListSan;
+
+    Button btn_CapNhat,btn_DangXuat,btn_CaiDat,btn_LienHe,btn_QuanLyThe,btn_YeuThich,btn_CauHoi,btn_CongDong;
+    TextView txt_Ten,txt_Sdt;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         getComment();
         getChuSan();
         setControl();
+        forLike();
         tab1();
         setActivity();
 
@@ -92,15 +100,181 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btn_CapNhat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myintent = new Intent(MainActivity.this, CapNhatHoSo.class);
+                startActivity(myintent);
+            }
+        });
+        btn_DangXuat = findViewById(R.id.btn_DangXuat);
+        btn_DangXuat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder quitDia = new AlertDialog.Builder(MainActivity.this);
+                quitDia.setTitle("Question");
+                quitDia.setIcon(R.drawable.question);
+                quitDia.setMessage("Are you sure you want to logout ?");
+                quitDia.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                });
+                quitDia.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                quitDia.create().show();
+            }
+        });
 
+        btn_CaiDat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myintent = new Intent(MainActivity.this, CaiDatTaiKhoan.class);
+                startActivity(myintent);
+            }
+        });
+        btn_CauHoi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myintent = new Intent(MainActivity.this, CauHoiThuongGap.class);
+                startActivity(myintent);
+            }
+        });
+        btn_QuanLyThe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myintent = new Intent(MainActivity.this, QuanLyThe.class);
+                startActivity(myintent);
+            }
+        });
+        btn_LienHe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myintent = new Intent(MainActivity.this, LienHe.class);
+                startActivity(myintent);
+            }
+        });
+
+        btnlike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(like==0)
+                {
+                    like++;
+                    btnlike.setImageResource(R.drawable.ic_unlike);
+
+                    FirebaseDatabase database=FirebaseDatabase.getInstance();
+                    DatabaseReference myRef=database.getReference("ListLike");
+
+                    Like like=new Like();
+
+                    like.check=1;
+                    like.username=Information.username;
+                    myRef.child(String.valueOf(like.getUsername())).setValue(like);
+                }
+                else
+                {
+                    like--;
+                    btnlike.setImageResource(R.drawable.ic_like);
+
+                    FirebaseDatabase database=FirebaseDatabase.getInstance();
+                    DatabaseReference myRef=database.getReference("ListLike");
+
+                    Like like=new Like();
+                    like.check=0;
+                    like.username=Information.username;
+                    myRef.child(String.valueOf(like.getUsername())).setValue(like);
+                    hmlike.remove(Information.username);
+                    forLike();
+                }
+            }
+        });
 
     }
 
+    String likestatus="Be the first one like this post!!";
+    int idlike=0;
+    TextView txtlikestatus;
+
+    HashMap<String, String> hmlike;
+    private void forLike()
+    {
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+        DatabaseReference myRef=database.getReference("ListLike");
+
+       hmlike = new HashMap<String, String>();
+       hmlike.clear();
+        final String[] nguoidung = {""};
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot dataSnapshot :snapshot.getChildren())
+                {
+                    Like flike=dataSnapshot.getValue(Like.class);
+
+                    if(flike.check==1)
+                    {
+                        if(flike.getUsername().compareTo(Information.username)==0)
+                        {
+                            btnlike.setImageResource(R.drawable.ic_unlike);
+                            like=1;
+                        }
+                        if(hmlike.containsKey(flike.getUsername())==false)
+                        {
+                            hmlike.put(flike.getUsername(), flike.getUsername());
+
+                        }
+                        nguoidung[0] =flike.getUsername();
+                        if(hmlike.size()==0)
+                            likestatus="Be the first one like this post!!";
+                        else if (hmlike.size()==1)
+                        {
+                            likestatus=nguoidung[0]+" liked this post";
+                        }
+                        else
+                        {
+                            likestatus=nguoidung[0]+" and "+(hmlike.size()-1)+" liked this post";
+                        }
+
+                        txtlikestatus.setText(likestatus);
+                    }
 
 
+                }
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        if(hmlike.size()==0)
+            likestatus="Be the first one like this post!!";
+        else if (hmlike.size()==1)
+        {
+            likestatus=nguoidung[0]+" liked this post";
+        }
+        else
+        {
+            likestatus=nguoidung[0]+" and "+(hmlike.size()-1)+" liked this post";
+        }
+        txtlikestatus.setText(likestatus);
+    }
+
+
+    ImageView btnlike;
+    int like=0;
     private void setControl() {
 
-
+        txtlikestatus=findViewById(R.id.txtlikestatus);
         tabHost=findViewById(R.id.tabmain);
         tabHost.setup();
         TabHost.TabSpec tab1, tab2,tab3;
@@ -123,7 +297,17 @@ public class MainActivity extends AppCompatActivity {
         comment=findViewById(R.id.comment);
         box_comment=findViewById(R.id.boxcomment);
         txtcom=findViewById(R.id.txtcom);
+        btn_CapNhat = findViewById(R.id.btn_CapNhat);
+        btn_CaiDat= findViewById(R.id.btn_CaiDat);
+        btn_LienHe = findViewById(R.id.btn_LienHe);
+        txt_Ten = findViewById(R.id.txt_Ten);
+        txt_Sdt= findViewById(R.id.txt_Sdt);
+        btn_CauHoi = findViewById(R.id.btn_CauHoi);
+        btn_QuanLyThe = findViewById(R.id.btn_QuanLyThe);
+        btn_YeuThich = findViewById(R.id.btn_YeuThich);
 
+        txt_Ten.setText("Name: "+Information.name);
+        txt_Sdt.setText("Phonenumber: "+Information.sdt);
 
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
@@ -134,8 +318,16 @@ public class MainActivity extends AppCompatActivity {
                     tab1();
 
                 }
+
+                if(tabId.compareTo("tab2")==0)
+                {
+                    forLike();
+
+                }
             }
         });
+
+        btnlike=findViewById(R.id.btnlike);
 
 
     }
@@ -146,6 +338,7 @@ public class MainActivity extends AppCompatActivity {
         if(check!=0)
          tab1();
         check++;
+        forLike();
         super.onResume();
     }
 

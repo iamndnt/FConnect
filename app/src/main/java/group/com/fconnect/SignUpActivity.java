@@ -19,7 +19,7 @@ import java.util.HashMap;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    EditText edtUSER,edtPW,edtRPW,edtName;
+    EditText edtUSER,edtPW,edtRPW,edtName,edtemail,edtsdt;
     Button btnSignUp;
     HashMap<String, String> list_account;
     @Override
@@ -48,6 +48,8 @@ public class SignUpActivity extends AppCompatActivity {
                         account.setName(edtName.getText().toString());
                         account.setUsername(edtUSER.getText().toString());
                         account.setPassword(edtPW.getText().toString());
+                        account.setEmail(edtemail.getText().toString());
+                        account.setSdt(edtsdt.getText().toString());
                         pushAccount(account);
 
                         Toast.makeText(SignUpActivity.this,"Sign up successfully!",Toast.LENGTH_SHORT).show();
@@ -108,5 +110,8 @@ public class SignUpActivity extends AppCompatActivity {
         edtRPW = findViewById(R.id.edt_rePW);
         edtName = findViewById(R.id.edt_name);
         btnSignUp = findViewById(R.id.btn_signup);
+
+        edtemail=findViewById(R.id.edt_useremail);
+        edtsdt=findViewById(R.id.edt_usernamesdt);
     }
 }

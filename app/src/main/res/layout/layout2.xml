@@ -43,11 +43,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
-     <ImageView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:src="@drawable/ic_like"
-         ></ImageView>
+
+        <ImageView
+            android:id="@+id/btnlike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_like"></ImageView>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,11 +59,11 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/txtlikestatus"
         android:layout_width="wrap_content"
-        android:textStyle="bold"
         android:layout_height="wrap_content"
         android:text="tronghuyhihi and 20 other like this"
-        ></TextView>
+        android:textStyle="bold"></TextView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

@@ -1,12 +1,12 @@
 package group.com.fconnect;
 public class ConfirmationBooking
 {
-    public static int getId() {
+    public  int getId() {
         return id;
     }
 
-    public static void setId(int id) {
-        ConfirmationBooking.id = id;
+    public  void setId(int id) {
+        this.id = id;
     }
 
     public String getIdsan() {
@@ -41,7 +41,7 @@ public class ConfirmationBooking
         this.time = time;
     }
 
-    static int id=0;
+    int id=0;
     String idsan;
     String user;
     String price;

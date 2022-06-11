@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -90,6 +91,9 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
 
                     Information.username=edt_username.getText().toString();
+                    Information.password=edt_password.getText().toString();
+                    getInfo(Information.username);
+                    Log.e("cang",Information.username+"   "+Information.password+"   "+Information.name+"   "+Information.sdt+" "+"   "+Information.email);
 
                 }
                 else
@@ -108,6 +112,38 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void getInfo(String username)
+    {
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+        DatabaseReference myRef=database.getReference("List_account");
+
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot dataSnapshot :snapshot.getChildren())
+                {
+                    Account account=dataSnapshot.getValue(Account.class);
+
+                    if(account.getUsername().compareTo(username)==0)
+                    {
+                        Information.email=account.getEmail();
+                        Information.sdt= account.getSdt();
+                        Information.name=account.getName();
+
+                        break;
+                    }
+                }
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     private void getControl() {
         btn_login2 = findViewById(R.id.btn_login2);
         edt_username = findViewById(R.id.edt_username);

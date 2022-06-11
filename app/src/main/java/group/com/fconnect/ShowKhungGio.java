@@ -20,11 +20,11 @@ public class ShowKhungGio extends AppCompatActivity {
 
     ArrayList<String> arrayList;
     ArrayAdapter<String> arrayAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_khung_gio);
+
         txtshowgio=findViewById(R.id.txt_showtensan);
         txtshowgio.setText(InformationSanForUse.tensan);
 

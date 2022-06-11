@@ -10,6 +10,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FConnect">
         <activity
+            android:name=".ChungMinhNhanDan"
+            android:exported="false" />
+        <activity
+            android:name=".DoiMatKhau"
+            android:exported="false" />
+        <activity
+            android:name=".ThayDoiSDT"
+            android:exported="false" />
+        <activity
+            android:name=".ThayDoiThongTinCaNhan"
+            android:exported="false" />
+        <activity
+            android:name=".CapNhatHoSo"
+            android:exported="false" />
+        <activity
+            android:name=".LienHe"
+            android:exported="false" />
+        <activity
+            android:name=".QuanLyThe"
+            android:exported="false" />
+        <activity
+            android:name=".CauHoiThuongGap"
+            android:exported="false" />
+        <activity
+            android:name=".CaiDatTaiKhoan"
+            android:exported="false" />
+        <activity
             android:name=".Option_Choice"
             android:exported="false" />
         <activity
