@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#00000000">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_margin="16dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DiaLog Update Title"
+        android:background="@color/purple_200"
+        android:padding="12dp"
+        android:gravity="center"
+        android:textColor="@color/white">
+    </TextView>
+
+
+        <EditText
+            android:id="@+id/edt_UpdateTenSan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:hint="New Name">
+        </EditText>
+
+        <EditText
+            android:id="@+id/edt_UpdateDiaChi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:hint="New Dia Chi">
+        </EditText>
+
+        <EditText
+            android:id="@+id/edt_UpdateGia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:layout_marginTop="12dp"
+            android:hint="New Giá">
+        </EditText>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="0dp"
+                android:id="@+id/btnCancle"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cancel"
+                ></Button>
+
+            <Button
+                android:layout_width="0dp"
+                android:id="@+id/btnUpdate"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Update"
+                ></Button>
+
+            </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

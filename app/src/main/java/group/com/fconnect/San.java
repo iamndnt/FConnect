@@ -1,6 +1,8 @@
 package group.com.fconnect;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class San implements Serializable{
     private String Id_San;
@@ -22,6 +24,27 @@ public class San implements Serializable{
 
     public San(){}
 
+    public Map<String,Object> toMap(){
+        HashMap<String,Object> rs=new HashMap<>();
+        rs.put("TenSan",getTenSan());
+        rs.put("Id_San",getId_San());
+        rs.put("Id_ChuSan",getId_ChuSan());
+        rs.put("Gia",getGia());
+
+        rs.put("KG1",getKG1());
+        rs.put("KG2",getKG2());
+        rs.put("KG3",getKG3());
+        rs.put("KG4",getKG4());
+        rs.put("KG5",getKG5());
+        rs.put("KG6",getKG6());
+        rs.put("KG7",getKG7());
+        rs.put("KG8",getKG8());
+        rs.put("KG9",getKG9());
+        rs.put("KG10",getKG10());
+
+        rs.put("DiaChi",getDiaChi());
+        return rs;
+    }
 
     public String getId_San() {
         return Id_San;

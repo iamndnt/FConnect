@@ -32,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
     TextView fg_pw;
 
     HashMap<String, String> list_account;
+
+    HashMap<String, String> chusan_account;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         getControl();
         addActivity();
         getAccount();
-
+        getChuSanAccount();
         
     }
 
@@ -93,7 +95,13 @@ public class LoginActivity extends AppCompatActivity {
                     Information.username=edt_username.getText().toString();
                     Information.password=edt_password.getText().toString();
                     getInfo(Information.username);
-                    Log.e("cang",Information.username+"   "+Information.password+"   "+Information.name+"   "+Information.sdt+" "+"   "+Information.email);
+
+                }
+                else if(chusan_account.containsKey(edt_username.getText().toString()) && chusan_account.get(edt_username.getText().toString()).compareTo(edt_password.getText().toString())==0)
+                {
+                    Intent intent=new Intent(LoginActivity.this,ChuSanActivity.class);
+                    startActivity(intent);
+                    getDataChuSan(edt_username.getText().toString());
 
                 }
                 else
@@ -110,6 +118,43 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    private void getDataChuSan(String username) {
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+        DatabaseReference myRef=database.getReference("listChuSan");
+
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot dataSnapshot :snapshot.getChildren())
+                {
+
+                    ChuSan chuSan=dataSnapshot.getValue(ChuSan.class);
+                    if(chuSan.UserName.compareTo(username)==0)
+                    {
+                        InformationChuSan.Id_ChuSan=chuSan.getId_ChuSan();
+                        InformationChuSan.TenChuSan=chuSan.getTenChuSan();
+                        InformationChuSan.CCCD=chuSan.getCCCD();
+                        InformationChuSan.MatKhau=chuSan.getMatKhau();
+                        InformationChuSan.SDT=chuSan.getSDT();
+                        InformationChuSan.UserName=chuSan.getUserName();
+                        break;
+                    }
+
+                }
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
     }
 
     private void getInfo(String username)
@@ -152,6 +197,39 @@ public class LoginActivity extends AppCompatActivity {
         btn_gg = findViewById(R.id.btn_google);
         btn_tw = findViewById(R.id.btn_tw);
         fg_pw=findViewById(R.id.txtQuenMK);
+    }
+
+    private void getChuSanAccount()
+    {
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+        DatabaseReference myRef=database.getReference("listChuSan");
+
+        chusan_account= new HashMap<String, String>();
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot dataSnapshot :snapshot.getChildren())
+                {
+
+                    ChuSan chuSan=dataSnapshot.getValue(ChuSan.class);
+                    if(chusan_account.containsKey(chuSan.getUserName())==false)
+                    {
+                        chusan_account.put(chuSan.getUserName(),chuSan.getMatKhau());
+                    }
+
+                }
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
     }
 
     private void getAccount()

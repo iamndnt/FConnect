@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddStadiumActivity">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/add_IdSan"
+        android:hint="New ID Stadium"
+        android:layout_height="wrap_content"></EditText>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/add_TenSan"
+        android:hint="New Name Stadium"
+        android:layout_height="wrap_content"></EditText>
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/add_GiaSan"
+        android:hint="New Cost Stadium"
+        android:layout_height="wrap_content"></EditText>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/add_DiaChiSan"
+        android:hint="New Address Stadium"
+        android:layout_height="wrap_content"></EditText>
+
+    <Button
+        android:id="@+id/add_btnAdd"
+        android:text="Add Stadium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></Button>
+</LinearLayout>

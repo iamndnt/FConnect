@@ -463,7 +463,6 @@ public class MainActivity extends AppCompatActivity {
                     {
                         list_chusanname.put(chuSan.getId_ChuSan(),chuSan.getTenChuSan());
                         list_chusansdt.put(chuSan.getId_ChuSan(),chuSan.getSDT());
-
                     }
 
                 }

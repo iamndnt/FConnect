@@ -1,6 +1,7 @@
 package group.com.fconnect;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -10,12 +11,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 public class XacNhanDat extends AppCompatActivity {
@@ -23,6 +28,8 @@ public class XacNhanDat extends AppCompatActivity {
     TextView tensan1,khunggio1,username1,gia;
     Button xnd;
     int id=0;
+    int month=0;
+    int giahientai=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,7 +119,61 @@ public class XacNhanDat extends AppCompatActivity {
                  myRef1.child(String.valueOf(confirmationBooking.id)).setValue(confirmationBooking);
 
                 Toast.makeText(XacNhanDat.this,"Successfully",Toast.LENGTH_SHORT).show();
-                finish();
+
+
+                FirebaseDatabase database2=FirebaseDatabase.getInstance();
+
+
+
+                GregorianCalendar date = new GregorianCalendar();
+                month = date.get(Calendar.MONTH);
+                month = month+1;
+
+                HashMap<String,String> hmMonthSumMoney=new HashMap<>();
+
+
+                DatabaseReference myRef2=database2.getReference("listTongTienSan2/"+san.getId_ChuSan()+"/Month");
+                myRef2.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                        hmMonthSumMoney.put(snapshot.getKey(),snapshot.getValue(String.class));
+                        Toast.makeText(XacNhanDat.this, hmMonthSumMoney.get(snapshot.getKey()), Toast.LENGTH_SHORT).show();
+                        Log.e("loi","o day");
+                        if(hmMonthSumMoney.containsKey("M"+month))
+                        {
+                            giahientai= Integer.parseInt( hmMonthSumMoney.get("M"+month));
+                            Log.e("giaHienTai",giahientai+"");
+                            int gia=Integer.parseInt(san.getGia());
+                            Log.e("gia",gia+"");
+                            int giamoi=gia+giahientai;
+                            myRef2.child("M"+month).setValue(String.valueOf(giamoi));
+                        }
+
+                    }
+
+                    @Override
+                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
 
             }
         });

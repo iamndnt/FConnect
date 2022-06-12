@@ -3,12 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Learning/FConnect2/app/src/main/res/drawable/css_button.xml" value="0.1765625" />
         <entry key="..\:/Learning/FConnect2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.11875" />
+        <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_add_stadium.xml" value="0.11666666666666667" />
         <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_cai_dat_tai_khoan.xml" value="0.264" />
         <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_cap_nhat_ho_so.xml" value="0.264" />
         <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_cau_hoi_thuong_gap.xml" value="0.4" />
+        <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_chinh_sua_ttcnchu_san.xml" value="0.11666666666666667" />
+        <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_chu_san.xml" value="0.16041666666666668" />
         <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_chung_minh_nhan_dan.xml" value="0.264" />
         <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_doi_mat_khau.xml" value="0.264" />
+        <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_draw_bar_chart_sum_money.xml" value="0.16041666666666668" />
         <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_forgot_pass.xml" value="0.1234375" />
         <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_lien_he.xml" value="0.4" />
         <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_login.xml" value="0.4" />
@@ -17,13 +22,16 @@
         <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_quan_ly_the.xml" value="0.4" />
         <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_show_khung_gio.xml" value="0.264" />
         <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_sign_up.xml" value="0.4" />
+        <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_start.xml" value="0.25" />
         <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_thay_doi_sdt.xml" value="0.4" />
         <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_thay_doi_thong_tin_ca_nhan.xml" value="0.4" />
         <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_welcome.xml" value="0.1234375" />
         <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/activity_xac_nhan_dat.xml" value="0.2" />
+        <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/custom_show_all_stadium.xml" value="0.16041666666666668" />
         <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/layout1.xml" value="0.25" />
         <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/layout2.xml" value="0.25" />
         <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/layout3.xml" value="0.4" />
+        <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/layout_dialog.xml" value="0.536" />
         <entry key="..\:/Learning/FConnect2/app/src/main/res/layout/my_custom_listview_show_all_stadium.xml" value="0.6" />
       </map>
     </option>

@@ -8,6 +8,25 @@ public class ChuSan implements Serializable {
     private String CCCD;
     private String SDT;
 
+    public String getUserName() {
+        return UserName;
+    }
+
+    public void setUserName(String userName) {
+        UserName = userName;
+    }
+
+    public String getMatKhau() {
+        return MatKhau;
+    }
+
+    public void setMatKhau(String matKhau) {
+        MatKhau = matKhau;
+    }
+
+    String UserName;
+    String MatKhau;
+
     public ChuSan(){}
 
     public ChuSan(String id_ChuSan, String tenChuSan, String CCCD, String SDT) {

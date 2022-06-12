@@ -46,4 +46,5 @@ public class ConfirmationBooking
     String user;
     String price;
     String time;
+
 }
