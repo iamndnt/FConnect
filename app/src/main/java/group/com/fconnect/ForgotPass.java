@@ -26,6 +26,8 @@ public class ForgotPass extends AppCompatActivity {
     Button confirm ;
     HashMap<String, String> list_account;
     HashMap<String, String> list_name;
+    HashMap<String, String> list_sdt;
+    HashMap<String, String> list_email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class ForgotPass extends AppCompatActivity {
                             account.setUsername(txtTDN.getText().toString());
                             account.setPassword(txtMKM.getText().toString());
                             account.setName(list_name.get(txtTDN.getText().toString()));
+                            account.setSdt(list_sdt.get(txtTDN.getText().toString()));
+                            account.setEmail(list_email.get(txtTDN.getText().toString()));
                             pushAccount(account);
                             Toast.makeText(ForgotPass.this,"Your password is reset!",Toast.LENGTH_SHORT).show();
                         }
@@ -87,7 +91,8 @@ public class ForgotPass extends AppCompatActivity {
 
         list_account = new HashMap<String, String>();
         list_name=new HashMap<>();
-
+        list_email=new HashMap<>();
+        list_sdt=new HashMap<>();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -99,6 +104,9 @@ public class ForgotPass extends AppCompatActivity {
                     {
                         list_name.put(account.getUsername(),account.getName());
                         list_account.put(account.getUsername(),account.password);
+
+                        list_email.put(account.getUsername(),account.getEmail());
+                        list_sdt.put(account.getUsername(),account.getSdt());
                     }
 
                 }

@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                     btnlike.setImageResource(R.drawable.ic_unlike);
 
                     FirebaseDatabase database=FirebaseDatabase.getInstance();
-                    DatabaseReference myRef=database.getReference("ListLike");
+                    DatabaseReference myRef=database.getReference("ListLike/1");
 
                     Like like=new Like();
 
@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
                     btnlike.setImageResource(R.drawable.ic_like);
 
                     FirebaseDatabase database=FirebaseDatabase.getInstance();
-                    DatabaseReference myRef=database.getReference("ListLike");
+                    DatabaseReference myRef=database.getReference("ListLike/1");
 
                     Like like=new Like();
                     like.check=0;
@@ -205,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
     private void forLike()
     {
         FirebaseDatabase database=FirebaseDatabase.getInstance();
-        DatabaseReference myRef=database.getReference("ListLike");
+        DatabaseReference myRef=database.getReference("ListLike/1");
 
        hmlike = new HashMap<String, String>();
        hmlike.clear();
